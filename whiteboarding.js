@@ -5,29 +5,58 @@ class Node {
     }
 }
 
-const a = new Node(2);
-const b = new Node(8);
-const c = new Node(3);
-const d = new Node(-1);
-const e = new Node(7);
-
+const a = new Node(5);
+const b = new Node(7);
+const c = new Node(10);
+const d = new Node(12);
+const e = new Node(20);
+const f = new Node(28);
 a.next = b;
 b.next = c;
 c.next = d;
 d.next = e;
+e.next = f;
+// 5 -> 7 -> 10 -> 12 -> 20 -> 28
 
-const sumList = (head) => {
-    let sum = 0;
-    addSum(sum, head);
-    console.log('final', sum)
-    return sum;
-}
+const q = new Node(6);
+const r = new Node(8);
+const s = new Node(9);
+const t = new Node(25);
+q.next = r;
+r.next = s;
+s.next = t;
+// 6 -> 8 -> 9 -> 25
 
-const addSum = (sum, head) => {
-    if (!head) return;
-    sum += head.val
-    console.log('current', sum)
-    addSum(sum, head.next)
-};
 
-sumList(a); // 19
+const mergeLists = (head1, head2) => {
+    let dummyHead = new Node(null);
+    let tail = dummyHead;
+
+    let current1 = head1;
+    let current2 = head2;
+
+    while (current1 && current2) {
+        if (current1.val < current2.val) {
+            tail.next = current1;
+            current1 = current1.next;
+
+        } else {
+            tail.next = current2;
+            current2 = current2.next;
+
+        }
+        tail = tail.next;
+    }
+
+    if (current1) tail.next = current1
+    if (current2) tail.next = current2
+
+    // while (dummyHead) {
+    //     console.log(dummyHead.val);
+    //     dummyHead = dummyHead.next
+    // }
+
+    return dummyHead.next;
+  };
+
+mergeLists(a, q);
