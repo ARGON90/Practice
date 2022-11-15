@@ -5,58 +5,42 @@ class Node {
     }
 }
 
-const a = new Node(5);
-const b = new Node(7);
-const c = new Node(10);
-const d = new Node(12);
-const e = new Node(20);
-const f = new Node(28);
+const a = new Node("a");
+const b = new Node("b");
+
 a.next = b;
-b.next = c;
-c.next = d;
-d.next = e;
-e.next = f;
-// 5 -> 7 -> 10 -> 12 -> 20 -> 28
-
-const q = new Node(6);
-const r = new Node(8);
-const s = new Node(9);
-const t = new Node(25);
-q.next = r;
-r.next = s;
-s.next = t;
-// 6 -> 8 -> 9 -> 25
 
 
-const mergeLists = (head1, head2) => {
-    let dummyHead = new Node(null);
-    let tail = dummyHead;
-
-    let current1 = head1;
-    let current2 = head2;
-
-    while (current1 && current2) {
-        if (current1.val < current2.val) {
-            tail.next = current1;
-            current1 = current1.next;
-
-        } else {
-            tail.next = current2;
-            current2 = current2.next;
-
+const insertNode = (head, value, index) => {
+    class Node {
+        constructor(val) {
+            this.val = val;
+            this.next = null;
         }
-        tail = tail.next;
+    }
+    let current = head;
+    let newNode = new Node(value)
+    let count = 0;
+
+    if (index === 0) {
+        newNode.next = head;
+        head = newNode
     }
 
-    if (current1) tail.next = current1
-    if (current2) tail.next = current2
+    while (current) {
+        let targetTail = current.next;
+        if (count === index - 1) {
+            current.next = newNode;
+            newNode.next = targetTail
+        }
+        count++
+        current = current.next;
+    }
+    while (head) {
+        console.log(head.val)
+        head = head.next;
+    }
+};
 
-    // while (dummyHead) {
-    //     console.log(dummyHead.val);
-    //     dummyHead = dummyHead.next
-    // }
-
-    return dummyHead.next;
-  };
-
-mergeLists(a, q);
+insertNode(a, 'z', 0);
+// a -> b -> x -> c -> d
