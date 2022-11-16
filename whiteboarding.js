@@ -45,4 +45,8 @@ const insertNode = (head, value, index) => {
 insertNode(a, 'z', 0);
 // a -> b -> x -> c -> d
 
+
+let a = b
+b = 3
+console.log(a, b)
 //test push
