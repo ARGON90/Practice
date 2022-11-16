@@ -44,3 +44,5 @@ const insertNode = (head, value, index) => {
 
 insertNode(a, 'z', 0);
 // a -> b -> x -> c -> d
+
+//test push
