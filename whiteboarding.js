@@ -48,5 +48,5 @@ insertNode(a, 'z', 0);
 
 let a = b
 b = 3
-console.log(a, b)
+console.log(a, b, "testing GH push")
 //test push
